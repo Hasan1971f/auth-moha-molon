@@ -3,7 +3,7 @@ import React, { createContext, useState } from 'react';
 import { auth } from '../firebase.init';
  export const AuthContext = createContext(null)
 const AuthProvider = ({children}) => {
-    cnst [user, setUser] = useState(null)
+    const [user, setUser] = useState(null)
     const name = 'Potato alu mia'
     
 
@@ -15,16 +15,16 @@ const AuthProvider = ({children}) => {
         return signInWithEmailAndPassword(auth, email, password)
     }
 
-    // onAuthStateChanged(auth, currentUser=>{
-    //     if (currentUser) {
-    //         console.log('cuurrently loged user', currentUser)
-    //         setUser( currentUser)
-    //     }
-    //     else{
-    //         console.log('No user logged in')
-    //         setUser(null)
-    //     }
-    // })
+    onAuthStateChanged(auth, currentUser=>{
+        if (currentUser) {
+            console.log('cuurrently loged user', currentUser)
+            setUser( currentUser)
+        }
+        else{
+            console.log('No user logged in')
+            setUser(null)
+        }
+    })
 
     const authInfo = {
        name,
